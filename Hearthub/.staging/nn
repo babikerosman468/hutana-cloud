@@ -1,0 +1,13 @@
+~/Hearthub $ ./verify_live.sh Usage: 
+
+
+./verify_live.sh Vercel https://hearthub-bjyb3bzoe-babikerosmans-projects.vercel.app/dashboard.html
+
+
+
+
+git add vision_mission.txt
+git commit -m "Add vision and mission file"
+git push origin main
+
+

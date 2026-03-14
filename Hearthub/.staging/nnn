@@ -1,0 +1,105 @@
+
+https://hearthub-65y6dzdwe-babikerosmans-projects.vercel.app/index.html
+
+https://hearthub-65y6dzdwe-babikerosmans-projects.vercel.app/dashboard.html
+
+
+
+🌍 https://hearthub-hgebtatvi-babikerosmans-projects.vercel.app
+
+
+
+
+
+
+Got it 👍 thanks for the detail. When Vercel pages load for a second then show “Something went wrong”, it’s usually one of these:
+
+🔎 Common Causes
+
+1. Protected project → If your project is under your personal Vercel account and you haven’t made it public, others get blocked (they get asked to authenticate).
+
+
+2. Build/deployment error → Sometimes the static files deploy but a runtime check fails, especially if you’re using routes or environment variables.
+
+
+3. Browser-side redirect → If your HTML/JS tries to fetch something private (like an API endpoint that requires auth), the page will fail after opening briefly.
+
+
+
+✅ Steps to Fix
+
+1. In Termux, run:
+
+vercel --prod
+
+to redeploy and ensure it’s the production build.
+
+
+2. Then make the project public so visitors don’t need authentication:
+
+vercel project edit hearthub
+
+→ In the options, disable “Password Protection / Authentication”.
+
+Or directly in the dashboard:
+
+Go to Vercel Dashboard.
+
+Select your project (hearthub).
+
+Navigate to Settings → Security.
+
+Turn off “Password Protection”.
+
+
+
+3. Confirm the deployment status:
+
+vercel ls
+vercel inspect <deployment-url>
+
+See if any errors are logged.
+
+
+4. Test the raw static files:
+Open
+
+https://hearthub-hgebtatvi-babikerosmans-projects.vercel.app/index.html
+
+If that works but / (root) doesn’t, you might need to add a vercel.json with:
+
+{
+  "rewrites": [{ "source": "/", "destination": "/index.html" }]
+}
+
+and redeploy.
+
+
+
+
+---
+
+👉 Do you want me to draft the exact vercel.json config for you so the homepage always loads correctly for everyone (no login)?
+
+
+The error is because you copied the command literally with <deployment-url>.
+
+In bash, < > are special characters, so you must replace them with your actual Vercel deployment URL.
+
+For example, in your case your site is:
+
+https://hearthub-hgebtatvi-babikerosmans-projects.vercel.app
+
+So run it like this:
+
+vercel inspect https://hearthub-hgebtatvi-babikerosmans-projects.vercel.app
+
+or shorter, if you know the deployment ID:
+
+vercel inspect hearthub-hgebtatvi-babikerosmans-projects.vercel.app
+
+👉 Try that and paste the output here — it will show why Vercel is giving "Something went wrong" after opening.
+
+Would you like me to also show you a clean Termux flow to redeploy it fresh (with no authentication prompt for visitors)?
+
+

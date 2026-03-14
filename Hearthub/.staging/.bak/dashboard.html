@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyGlobalHeartHub.org Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      color: #333;
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      grid-template-rows: 80px auto 60px;
+      height: 100vh;
+      grid-template-areas:
+        "sidebar header"
+        "sidebar main"
+        "sidebar footer";
+    }
+
+    .sidebar {
+      grid-area: sidebar;
+      background-color: #ddeeff;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sidebar h2 {
+      color: maroon;
+      font-size: 1.2rem;
+      margin-bottom: 1em;
+    }
+
+    .nav-item {
+      background: #a9cce3;
+      padding: 0.6em;
+      margin: 0.4em 0;
+      text-align: center;
+      width: 100%;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .nav-item:hover {
+      background-color: #7fb3d5;
+    }
+
+    .header {
+      grid-area: header;
+      background-color: #eaf2f8;
+      padding: 1em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .main {
+      grid-area: main;
+      padding: 2em;
+      overflow-y: auto;
+    }
+
+    .footer {
+      grid-area: footer;
+      background-color: #d5dbdb;
+      text-align: center;
+      padding: 1em;
+    }
+
+    .box {
+      background-color: #fff;
+      padding: 1.5em;
+      margin-bottom: 2em;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2 {
+      margin-top: 0;
+    }
+
+    .lang-toggle {
+      text-align: center;
+      margin-bottom: 1em;
+    }
+
+    .lang-toggle button {
+      margin: 0 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border: none;
+      background-color: #4682B4;
+      color: white;
+      border-radius: 4px;
+    }
+
+    .wrap-img {
+      float: right;
+      margin: 1rem;
+      width: 180px;
+      border-radius: 10px;
+    }
+
+    .centered-quote {
+      text-align: center;
+      font-style: italic;
+      color: #228B22;
+      margin-top: 2rem;
+    }
+
+    .coherence-map {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .coherence-map img {
+      max-width: 400px;
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>🌍 Heart Hub</h2>
+      <div class="nav-item">Home Profile</div>
+      <div class="nav-item">Heart Science</div>
+      <div class="nav-item">AI platform</div>
+      <div class="nav-item">Genomics Bioinformatics</div>
+      <div class="nav-item">Reports</div>
+      <div class="nav-item">Messages</div>
+      <div class="nav-item">Logout</div>
+    </aside>
+
+    <!-- Header -->
+    <header class="header">
+      <h1>Dashboard</h1>
+      <div>
+        <input type="text" placeholder="Search..." />
+        <span style="margin-left: 1em;">🔔</span>
+        <span style="margin-left: 0.5em;">👤</span>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Language Switch -->
+      <div class="lang-toggle">
+        <button onclick="switchLang('arabic')">العربية</button>
+        <button onclick="switchLang('english')">English</button>
+      </div>
+
+      <!-- Image (heart with ECG) -->
+      <div class="coherence-map">
+        <img src="heart.jpg" alt="Heart and ECG Image" />
+
+        <p style="font-weight: bold; color: #555;">Community Coherence Visualization</p>
+      </div>
+
+      <!-- Arabic Welcome -->
+      <div id="arabic" class="box content active">
+        <h2>مرحبًا</h2>
+        <p>
+          مرحبًا بكم في <strong>MyGlobalHeartHub.org</strong> — منصة تعاونية مكرسة لبناء التماسك القلبي، والوعي الكوني، والتحول الحيوي-الاجتماعي والاقتصادي.
+        </p>
+        <p>نحن ندمج بين العلم، والحب، والوحدة لإلهام عالم من الرحمة والوعي والهدف المشترك.</p>
+      </div>
+
+      <!-- English Welcome -->
+      <div id="english" class="box content">
+        <h2>Welcome</h2>
+        <p>A collaborative platform dedicated to heart-based coherence, global consciousness, and bio-socioeconomic transformation.</p>
+        <p>We bring together science, love, and unity to inspire a world of compassion, awareness, and shared purpose.</p>
+      </div>
+
+      <div class="centered-quote">
+        <span>A Resonant Field for a Coherent Future</span>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      &copy; 2025 MyGlobalHeartHub.org | 🔗 Facebook &nbsp; 🔗 Twitter &nbsp; 🔗 LinkedIn
+    </footer>
+  </div>
+
+  <script>
+    function switchLang(lang) {
+      document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+      document.getElementById(lang).classList.add('active');
+      document.body.dir = (lang === 'arabic') ? 'rtl' : 'ltr';
+      document.documentElement.lang = (lang === 'arabic') ? 'ar' : 'en';
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

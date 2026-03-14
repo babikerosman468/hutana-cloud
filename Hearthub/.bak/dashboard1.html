@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MyGlobalHeartHub.org Dashboard</title>
+<style>
+    body { margin:0; font-family:Arial,sans-serif; background:#f0f8ff; color:#333; }
+    .container { display:grid; grid-template-columns:220px 1fr; grid-template-rows:80px auto 60px; height:100vh; grid-template-areas:"sidebar header" "sidebar main" "sidebar footer"; }
+    .sidebar { grid-area:sidebar; background:#ddeeff; padding:1em; display:flex; flex-direction:column; align-items:center; }
+    .sidebar h2 { color:maroon; font-size:1.2rem; margin-bottom:1em; }
+    .nav-item { background:#a9cce3; padding:0.6em; margin:0.4em 0; text-align:center; width:100%; border-radius:6px; cursor:pointer; transition:0.3s; }
+    .nav-item:hover, .nav-item.active { background:#7fb3d5; }
+    .header { grid-area:header; background:#eaf2f8; padding:1em; display:flex; justify-content:space-between; align-items:center; }
+    .header input[type="text"] { padding:0.4em 0.6em; border-radius:4px; border:1px solid #ccc; width:200px; }
+    .main { grid-area:main; padding:2em; overflow-y:auto; }
+    .box { background:#fff; padding:1.5em; margin-bottom:2em; border-radius:8px; box-shadow:0 2px 5px rgba(0,0,0,0.1); display:none; }
+    .box.active { display:block; }
+    h1,h2 { margin-top:0; }
+    .coherence-map { text-align:center; margin-top:2rem; }
+    .coherence-map img { max-width:400px; width:100%; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.2); }
+    .centered-quote { text-align:center; font-style:italic; color:#228B22; margin-top:2rem; }
+    .footer { grid-area:footer; background:#d5dbdb; text-align:center; padding:1em; }
+    @media(max-width:768px){ .container{ grid-template-columns:1fr; grid-template-rows:60px auto 60px 1fr; grid-template-areas:"header" "main" "footer" "sidebar"; } .sidebar{ flex-direction:row; justify-content:space-around; width:100%; } }
+    .notification { background:#ffdddd; padding:0.3em 0.6em; border-radius:4px; margin-left:0.5em; }
+</style>
+</head>
+<body>
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>🌍 Heart Hub</h2>
+        <div class="nav-item active" data-target="home">Home Profile</div>
+        <div class="nav-item" data-target="heart">Heart Science</div>
+        <div class="nav-item" data-target="ai">AI Platform</div>
+        <div class="nav-item" data-target="genomics">Genomics Bioinformatics</div>
+        <div class="nav-item" data-target="reports">Reports <span id="notif-reports" class="notification" style="display:none;">0</span></div>
+        <div class="nav-item" data-target="messages">Messages <span id="notif-messages" class="notification" style="display:none;">0</span></div>
+        <div class="nav-item" data-target="logout">Logout</div>
+    </aside>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>Dashboard</h1>
+        <input type="text" id="searchBox" placeholder="Search...">
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div id="home" class="box active">
+            <h2>Home Profile</h2>
+            <p>Welcome to MyGlobalHeartHub.org — a collaborative heart-based platform.</p>
+        </div>
+        <div id="heart" class="box">
+            <h2>Heart Science</h2>
+            <p>Research and insights into heart-based coherence and biofield studies.</p>
+        </div>
+        <div id="ai" class="box">
+            <h2>AI Platform</h2>
+            <p>Explore AI-driven simulations and analytics for global coherence.</p>
+        </div>
+        <div id="genomics" class="box">
+            <h2>Genomics Bioinformatics</h2>
+            <p>Data-driven genomic research integrating bioinformatics tools.</p>
+        </div>
+        <div id="reports" class="box">
+            <h2>Reports</h2>
+            <p>Access all generated reports and dashboards here.</p>
+        </div>
+        <div id="messages" class="box">
+            <h2>Messages</h2>
+            <p>Collaborative messaging and notifications for the team.</p>
+        </div>
+        <div id="logout" class="box">
+            <h2>Logout</h2>
+            <p>Click here to safely exit the platform.</p>
+        </div>
+
+        <div class="coherence-map">
+            <img src="heart.jpg" alt="Heart and ECG Image" />
+            <p style="font-weight:bold; color:#555;">Community Coherence Visualization</p>
+        </div>
+        <div class="centered-quote">
+            <span>A Resonant Field for a Coherent Future</span>
+        </div>
+    </main>
+
+    <footer class="footer">
+        &copy; 2025 MyGlobalHeartHub.org | 🔗 Facebook &nbsp; 🔗 Twitter &nbsp; 🔗 LinkedIn
+    </footer>
+</div>
+
+<script>
+const navItems = document.querySelectorAll('.nav-item');
+const boxes = document.querySelectorAll('.box');
+const searchBox = document.getElementById('searchBox');
+
+// Switch sidebar tab
+function activateTab(target) {
+    navItems.forEach(item => item.classList.remove('active'));
+    document.querySelector(`.nav-item[data-target="${target}"]`).classList.add('active');
+    boxes.forEach(box => box.classList.remove('active'));
+    document.getElementById(target).classList.add('active');
+}
+
+// Search filter
+searchBox.addEventListener('input', () => {
+    const query = searchBox.value.toLowerCase();
+    boxes.forEach(box => {
+        const text = box.innerText.toLowerCase();
+        box.style.display = text.includes(query) ? 'block' : 'none';
+    });
+});
+
+// Logout confirmation
+document.querySelector('.nav-item[data-target="logout"]').addEventListener('click', () => {
+    if(confirm("Are you sure you want to logout?")) {
+        alert("Logging out...");
+    } else {
+        activateTab('home');
+    }
+});
+
+// Initialize sidebar clicks
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const target = item.dataset.target;
+        if(target !== 'logout') activateTab(target);
+    });
+});
+
+// --- LIVE DATA FETCH (daily) --- //
+async function fetchLiveData() {
+    try {
+        const response = await fetch('/api/live-data', { cache: 'no-store' }); // Node.js endpoint
+        if (!response.ok) throw new Error("API request failed");
+        const data = await response.json(); // { "reports": 7, "messages": 12 }
+
+        const reportsNotif = document.getElementById('notif-reports');
+        const messagesNotif = document.getElementById('notif-messages');
+
+        reportsNotif.textContent = data.reports;
+        messagesNotif.textContent = data.messages;
+
+        reportsNotif.style.display = data.reports > 0 ? 'inline-block' : 'none';
+        messagesNotif.style.display = data.messages > 0 ? 'inline-block' : 'none';
+    } catch (error) {
+        console.error("Error fetching live API data:", error);
+    }
+}
+
+// Fetch immediately and update every 24 hours
+fetchLiveData();
+setInterval(fetchLiveData, 86400000); // 24 hours in ms
+</script>
+</body>
+</html>
+
+
+

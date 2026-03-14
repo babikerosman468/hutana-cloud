@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environments
+.env
+venv/
+ENV/
+env/
+*.egg-info/
+
+# Secrets
+*.env
+*.key
+*.pem
+
+# Android files (protect IP)
+*.apk
+*.aab
+*.dex
+*.keystore
+/app/build/
+/android/
+
+Save it.
+
+
+.vercel

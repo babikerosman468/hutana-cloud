@@ -1,0 +1,58 @@
+Perfect, Babs! Sending via WhatsApp is actually very simple. Since WhatsApp doesn’t allow sending .html files directly in some cases, the easiest way is to zip it first:
+
+
+---
+
+Step 1: Zip the HTML
+
+cd ~/downloads/hutana
+zip hutana_share.zip open_hutana.html
+
+This creates hutana_share.zip.
+
+
+---
+
+Step 2: Send via WhatsApp
+
+1. Open WhatsApp on your phone.
+
+
+2. Open the chat with your brother.
+
+
+3. Tap the attachment icon (paperclip) → choose Document.
+
+
+4. Select hutana_share.zip and send it.
+
+
+
+
+---
+
+Step 3: On his side
+
+1. He downloads the zip.
+
+
+2. Extracts it (most phones have a built-in extractor).
+
+
+3. Opens open_hutana.html in a browser.
+
+
+4. Clicks the big “Open Gallery” button — it opens your Hutana gallery via the Cloudflare URL.
+
+
+
+
+---
+
+✅ That’s it! No Termux, no Python, nothing else required.
+
+If you want, I can also prepare a pre-zipped file ready to send so you don’t have to zip manually. It’ll be fully ready to share via WhatsApp.
+
+Do you want me to do that?
+
+

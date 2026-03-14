@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>محرر لاتيخ | BabsApp</title>
+  <style>
+    body {
+      font-family: 'Amiri', serif;
+      background: #f0f8ff;
+      padding: 1em;
+      color: #333;
+    }
+    nav {
+      margin-bottom: 1em;
+      background: #4682b4;
+      padding: 0.5em;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    textarea {
+      width: 100%;
+      height: 300px;
+      font-size: 16px;
+      direction: rtl;
+      font-family: 'Amiri', serif;
+    }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      background: #4682b4;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    iframe {
+      width: 100%;
+      height: 500px;
+      border: 1px solid #999;
+      margin-top: 1em;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="all.html">عرض PDF</a>
+    <a href="editor.html">المحرر</a>
+  </nav>
+
+  <h1>📄 محرر LaTeX</h1>
+
+  <textarea id="editor"></textarea><br />
+
+  <button onclick="save()">💾 حفظ</button>
+  <button onclick="compile()">⚙️ تجميع</button>
+
+  <iframe id="pdfFrame" src="main1.pdf"></iframe>
+
+  <script>
+    async function load() {
+      const res = await fetch('/load?file=main1.tex');
+      const text = await res.text();
+      document.getElementById('editor').value = text;
+    }
+
+    async function save() {
+      const content = document.getElementById('editor').value;
+      const res = await fetch('/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ content })
+      });
+      alert(await res.text());
+    }
+
+    async function compile() {
+      const res = await fetch('/compile');
+      const result = await res.text();
+      alert(result);
+      document.getElementById('pdfFrame').src = 'main1.pdf#' + new Date().getTime();
+    }
+
+    load();
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,1 @@
+const SEARCH_INDEX = []
